@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Pied Piper Project</title>
+</head>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="renderer.js"></script>
+<style type="text/css">
+	
+	body{
+		background-color: black;
+		color: white;
+		font-family: Avenir Next;
+		/*text-align: center;*/
+	}
+
+	#container{
+		height: 100%;
+		width: 100%;
+		/*text-align: center;*/
+		/*padding: 0 auto;*/
+
+	}
+
+	#heading{
+		/*margin-left: 200px;*/
+		text-align: center;
+		animation-name: heading-anim;
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+		margin-top: 100px;
+		width: 250px;
+		height: 65px;
+		font-family: Avenir Next;
+		font-size: 25px;
+		border-width: 1px;
+		border-color: white;
+		border-style: solid;
+		
+	}
+
+	#buttons{
+		/*margin-left: 210px;*/
+		animation-name: buttons-anim;
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;	
+		animation-fill-mode: forwards;
+	
+		margin-top: 105px;
+		width: 200px;
+		height: 25px;
+
+
+		border-width: 1px;
+		border-color: white;
+		border-style: solid;
+
+		
+	}
+
+	button{
+		width: 95px;
+		margin-left: 2.5px;
+
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+
+	#uploaded_data_info{
+		/*margin-left: 100px;*/
+		text-align: center;
+		/*margin-right: 10px;
+		padding: 0px;*/
+		border-width: 1px;
+		border-color: white;
+		border-style: solid;
+
+		margin-top: 20px;
+
+		/*animation-name: none;*/
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;	
+		animation-fill-mode: forwards;
+	}
+
+	#data_info{
+		/*margin-left: 150px;*/
+		text-align: center;
+		/*margin-top: 20px;*/
+	
+		border-width: 1px;
+		border-color: white;
+		border-style: solid;
+
+		/*margin-left: 800px;*/
+
+		/*transition: visibility 2s;*/
+
+		/*animation-name: none;*/
+		/*animation-delay: 3s;*/
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;	
+		animation-fill-mode: forwards;
+
+	}
+
+	ul{
+		list-style: none;
+		padding: 0px;
+	}
+
+	@keyframes down-anim {
+		from {margin-top: 20px;}
+		to {margin-top: 400px;}
+	}
+
+	@keyframes data-anim {
+		from {margin-top: 400px;}
+		to {margin-top: 20px;}
+	}
+
+	@keyframes heading-anim {
+		from {margin-left: 800px;}
+		to {margin-left: 175px;}
+	}
+
+	@keyframes buttons-anim {
+		from {margin-left: -100px;}
+		to {margin-left: 200px;}
+	}
+
+	@keyframes up-anim-heading {
+		from {margin-top: 100px; margin-left: 175px;}
+		to {margin-top: 10px; margin-left: 175px;}
+	}
+
+	@keyframes up-anim-buttons {
+		from {margin-top: 100px; margin-left: 200px;}
+		to {margin-top: 10px; margin-left: 200px;}
+	}
+
+</style>
+
+<body>
+	<div id="container">
+		<div id="heading">THE PIED PIPER PROJECT</div>
+		<div id="buttons">
+			<button id="home" onclick="backToHome()">HOME</button>
+			<button id="file_path_btn" onclick="pushUp(); renderer.send('get-file-path', 'Get File Path')" style="visibility: visible;">UPLOAD</button>
+			<button id="compress_btn" onclick="pushDown(); renderer.send('compress-file', 'Compress File')" style="visibility: hidden;">COMPRESS</button>
+			<button id="decompress_btn" onclick="pushDown(); renderer.send('decompress-file', 'Decompress File')" style="visibility: hidden;">DECOMPRESS</button>
+			<button id="download_btn" onclick="renderer.send('download-file', 'Download File')" style="visibility: hidden;">DOWNLOAD</button>
+		</div>
+	
+
+		<div class="box" id="uploaded_data_info" style="visibility: hidden">
+			<h3>Uploaded Data Info</h3>
+			<!-- <input type="file" name="Upload File" id="input_file"> -->
+			<div>
+				<ul>
+					<li>File Name    : <a id="file_name"></a></li>
+					<li>File Size    : <a id="file_size"></a></li>
+					<li>File Type    : <a id="file_type"></a></li>
+					<li>Last Accessed: <a id="last_accessed"></a></li>
+					<li>Last Modified: <a id="last_modified"></a></li>
+					<li>Date Created : <a id="date_created"></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="box" id="data_info" style="visibility: hidden;">
+			<h3>Data Info</h3>
+			<div>
+				<ul>
+					<li>Old File Size: <a id="old_file_size"></a></li>
+					<li>New File Size: <a id="new_file_size"></a></li>
+					<li>Compression Ratio: <a id="comp_ratio"></a></li>
+					<!-- <li>New File Type: </li> -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
